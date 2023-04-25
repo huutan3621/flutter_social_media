@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input.dart';
-import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input_configs.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_default.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_second.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
@@ -48,13 +47,10 @@ class _SetUpInfoPageState extends State<SetUpInfoPage> {
             const SizedBox(
               height: 50,
             ),
+            TextFormField(),
             //input
             BaseInput(
-              baseConfigs: BaseInputConfigs(
-                controller: _nameController,
-                labelText: "Username",
-                maxLines: 1,
-              ),
+              labelText: "Your name",
             ),
             const SizedBox(
               height: 14,

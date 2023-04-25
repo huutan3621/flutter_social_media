@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input.dart';
-import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input_configs.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_default.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
@@ -16,6 +15,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _pswController = TextEditingController();
   final TextEditingController _isPswTrue = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,31 +51,22 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               //input
               BaseInput(
-                baseConfigs: BaseInputConfigs(
-                  controller: _usernameController,
-                  labelText: "Username",
-                  maxLines: 1,
-                ),
+                ctrl: _usernameController,
+                labelText: "Username",
               ),
               const SizedBox(
                 height: 10,
               ),
               BaseInput(
-                baseConfigs: BaseInputConfigs(
-                  controller: _pswController,
-                  labelText: "Password",
-                  maxLines: 1,
-                ),
+                ctrl: _pswController,
+                labelText: "Password",
               ),
               const SizedBox(
                 height: 10,
               ),
               BaseInput(
-                baseConfigs: BaseInputConfigs(
-                  controller: _isPswTrue,
-                  labelText: "Retype Password",
-                  maxLines: 1,
-                ),
+                ctrl: _isPswTrue,
+                labelText: "Retype Password",
               ),
               const SizedBox(
                 height: 20,

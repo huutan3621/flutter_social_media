@@ -22,6 +22,7 @@ extension AppTextStyle on TextStyle {
   TextStyle w900() => copyWith(fontWeight: FontWeight.w900);
 
   //display
+  TextStyle display12() => copyWith(fontSize: 12);
   TextStyle display14() => copyWith(fontSize: 14);
   TextStyle display16() => copyWith(fontSize: 16);
   TextStyle display20() => copyWith(fontSize: 20);

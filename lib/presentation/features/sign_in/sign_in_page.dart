@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_social_media/presentation/features/home/home_page.dart';
+import 'package:flutter_social_media/presentation/features/sign_up/sign_up_page.dart';
 import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input.dart';
-import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input_configs.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_default.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
@@ -54,28 +55,24 @@ class _SignInPageState extends State<SignInPage> {
               ),
               //input
               BaseInput(
-                baseConfigs: BaseInputConfigs(
-                  controller: _usernameController,
-                  labelText: "Username",
-                  maxLines: 1,
-                ),
+                labelText: "Username",
               ),
               const SizedBox(
                 height: 10,
               ),
               BaseInput(
-                baseConfigs: BaseInputConfigs(
-                  controller: _pswController,
-                  labelText: "Password",
-                  maxLines: 1,
-                ),
+                labelText: "Password",
               ),
               const SizedBox(
                 height: 20,
               ),
               //btn sign in
-              const BtnDefault(
+              BtnDefault(
                 title: "Sign In",
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const HomePage()));
+                },
               ),
               const SizedBox(
                 height: 10,
@@ -91,13 +88,19 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 5,
                   ),
-                  Text(
-                    'Sign in',
-                    style: tStyle.display16().w500().copyWith(
-                          color: AppColor.colorPink,
-                        ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const SignUpPage()));
+                    },
+                    child: Text(
+                      'Sign up',
+                      style: tStyle.display16().w500().copyWith(
+                            color: AppColor.colorPink,
+                          ),
+                    ),
                   ),
                 ],
               ),
