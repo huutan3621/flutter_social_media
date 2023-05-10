@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
 
-class BaseInput extends StatefulWidget {
+class BaseInput extends StatelessWidget {
   final TextEditingController? ctrl;
   final String? hintText;
   // final Widget? label;
@@ -25,20 +25,15 @@ class BaseInput extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<BaseInput> createState() => _BaseInputState();
-}
-
-class _BaseInputState extends State<BaseInput> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget.ctrl,
-      keyboardType: widget.keyboardType,
-      focusNode: widget.focusNode,
-      onFieldSubmitted: (value) => widget.onFieldSubmitted ?? (value),
-      validator: (input) => widget.validator!(input),
+      controller: ctrl,
+      keyboardType: keyboardType,
+      focusNode: focusNode,
+      onFieldSubmitted: (value) => onFieldSubmitted ?? (value),
+      validator: (input) => validator!(input),
       decoration: InputDecoration(
-          labelText: widget.labelText,
+          labelText: labelText,
           // labelStyle: tStyle.display14().w500().copyWith(
           //     color: (widget.focusNode?.hasFocus == true)
           //         ? AppColor.colorBlack

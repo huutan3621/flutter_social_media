@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_social_media/presentation/features/home/home_page.dart';
+import 'package:flutter_social_media/presentation/shared_ui/bottom_navigation_bar/bottom_navigation_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const HomePage(),
+      home: const AppBottomNavBar(),
     );
   }
 }
