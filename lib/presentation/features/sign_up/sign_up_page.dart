@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_social_media/presentation/features/home/home_page.dart';
+import 'package:flutter_social_media/presentation/features/user/data/model/user_model.dart';
+import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input%20password.dart';
 import 'package:flutter_social_media/presentation/shared_ui/base_input/base_input.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_default.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
+import 'package:flutter_social_media/services/firebase/auth/fir_auth_repo.dart';
+import 'package:flutter_social_media/shared/constants.dart';
 
 class SignUpPage extends StatefulWidget {
+  static const nameRoute = 'SignUpPage';
+
   const SignUpPage({super.key});
 
   @override
@@ -15,6 +22,16 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _pswController = TextEditingController();
   final TextEditingController _isPswTrue = TextEditingController();
+  //show and hide password
+  bool _hidePw = true;
+  void _showHidePw() {
+    setState(() {
+      _hidePw = !_hidePw;
+    });
+  }
+
+  FeedbackType passwordFeedbackType = FeedbackType.none;
+  String? feedbackMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -57,23 +74,72 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 10,
               ),
-              BaseInput(
+              BaseInputPassword(
                 ctrl: _pswController,
+                hidePW: _hidePw,
                 labelText: "Password",
+                decoration: InputDecoration(
+                  suffixIcon: InkWell(
+                    onTap: _showHidePw,
+                    child: Icon(
+                      _hidePw ? Icons.visibility_off : Icons.visibility,
+                      color: AppColor.colorGrey,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              BaseInput(
+              BaseInputPassword(
                 ctrl: _isPswTrue,
-                labelText: "Retype Password",
+                hidePW: _hidePw,
+                labelText: "Password",
+                decoration: InputDecoration(
+                  suffixIcon: InkWell(
+                    onTap: _showHidePw,
+                    child: Icon(
+                      _hidePw ? Icons.visibility_off : Icons.visibility,
+                      color: AppColor.colorGrey,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
               ),
               //btn sign in
-              const BtnDefault(
+              BtnDefault(
                 title: "Sign Up",
+                onTap: () async {
+                  await FirAuthRepo.createUserWithEmailAndPassword(
+                    email: _usernameController.text,
+                    password: _pswController.text,
+                    onFailure: (p0) {
+                      setState(() {
+                        passwordFeedbackType = FeedbackType.error;
+                        feedbackMessage = p0;
+                      });
+                    },
+                    onSuccess: (p0) async {
+                      final ref = AppConfig.shared.database$
+                          .ref("users/${p0.data?.user?.uid}");
+
+                      await ref.set(UserModel(
+                        email: _usernameController.text,
+                        username: _usernameController.text,
+                        createTime: DateTime.now(),
+                      ).toJson());
+
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (_) => HomePage(
+                                    id: p0.data?.user?.uid ?? "",
+                                  )),
+                          (route) => false);
+                    },
+                  );
+                },
               ),
               const SizedBox(
                 height: 10,
@@ -89,10 +155,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 5,
                   ),
                   Text(
-                    'Sign up',
+                    'Sign in',
                     style: tStyle.display16().w500().copyWith(
                           color: AppColor.colorPink,
                         ),

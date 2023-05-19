@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
 
-class BaseInput extends StatelessWidget {
+class BaseInput extends StatefulWidget {
   final TextEditingController? ctrl;
   final String? hintText;
   // final Widget? label;
@@ -25,15 +25,34 @@ class BaseInput extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<BaseInput> createState() => _BaseInputState();
+}
+
+class _BaseInputState extends State<BaseInput> {
+  @override
+  void initState() {
+    widget.ctrl?.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.ctrl?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: ctrl,
-      keyboardType: keyboardType,
-      focusNode: focusNode,
-      onFieldSubmitted: (value) => onFieldSubmitted ?? (value),
-      validator: (input) => validator!(input),
+      controller: widget.ctrl,
+      keyboardType: widget.keyboardType,
+      focusNode: widget.focusNode,
+      onFieldSubmitted: (value) => widget.onFieldSubmitted ?? (value),
+      validator: (input) => widget.validator!(input),
       decoration: InputDecoration(
-          labelText: labelText,
+          labelText: widget.labelText,
           // labelStyle: tStyle.display14().w500().copyWith(
           //     color: (widget.focusNode?.hasFocus == true)
           //         ? AppColor.colorBlack
@@ -54,3 +73,10 @@ class BaseInput extends StatelessWidget {
     );
   }
 }
+
+// enum FeedbackType {
+//   error,
+//   warning,
+//   success,
+//   none,
+// }
