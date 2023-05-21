@@ -53,10 +53,11 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCyQuW0cp3Wiygib0wkkCCLSJ35O7vzb64',
-    appId: '1:721449492590:android:995bdcf43cd863b853067f',
-    messagingSenderId: '721449492590',
-    projectId: 'flutter-social-media-bcef2',
-    storageBucket: 'flutter-social-media-bcef2.appspot.com',
-  );
+      apiKey: 'AIzaSyCyQuW0cp3Wiygib0wkkCCLSJ35O7vzb64',
+      appId: '1:721449492590:android:995bdcf43cd863b853067f',
+      messagingSenderId: '721449492590',
+      projectId: 'flutter-social-media-bcef2',
+      storageBucket: 'flutter-social-media-bcef2.appspot.com',
+      databaseURL:
+          'flutter-social-media-bcef2.asia-southeast1.firebase.io.com');
 }

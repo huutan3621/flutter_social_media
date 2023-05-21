@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_social_media/presentation/features/home/home_page.dart';
 import 'package:flutter_social_media/presentation/features/user/data/model/user_model.dart';
@@ -23,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _pswController = TextEditingController();
   final TextEditingController _isPswTrue = TextEditingController();
   //show and hide password
-  bool _hidePw = true;
+  bool _hidePw = false;
   void _showHidePw() {
     setState(() {
       _hidePw = !_hidePw;

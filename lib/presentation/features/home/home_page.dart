@@ -5,8 +5,12 @@ import 'package:flutter_social_media/presentation/features/user/data/model/user_
 import 'package:flutter_social_media/shared/constants.dart';
 
 class HomePage extends StatefulWidget {
+  static const nameRoute = 'HomePage';
   final String id;
-  const HomePage({Key? key, required this.id}) : super(key: key);
+  const HomePage({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -47,17 +51,11 @@ class _HomePageState extends State<HomePage> {
           height: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               // WeekList(),
               // const Expanded(
               //   child: TodoRecords(),
               // )
-              Text(
-                _user?.email.toString() ?? "",
-              ),
-              Text(
-                _user?.createTime.toString() ?? "",
-              ),
             ],
           ),
         ),
