@@ -6,10 +6,10 @@ import 'package:flutter_social_media/shared/constants.dart';
 
 class HomePage extends StatefulWidget {
   static const nameRoute = 'HomePage';
-  final String id;
+  // final String id;
   const HomePage({
     Key? key,
-    required this.id,
+    // required this.id,
   }) : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getUserData(widget.id);
+    // getUserData(widget.id);
   }
 
   void getUserData(String uid) async {
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _user = user;
       UserRepoX.shared.signedInUser = user;
-      UserRepoX.shared.userId = widget.id;
+      // UserRepoX.shared.userId = widget.id;
     });
   }
 
@@ -42,10 +42,10 @@ class _HomePageState extends State<HomePage> {
     return SizedBox(
       child: Scaffold(
         appBar: AppBar(),
-        drawer: HomeDrawer(
-          drawerUsername: _user?.username,
-          user: _user,
-        ),
+        drawer: const HomeDrawer(),
+        // drawer: HomeDrawer(
+
+        // ),
         body: SizedBox(
           width: double.infinity,
           height: double.infinity,

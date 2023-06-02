@@ -59,5 +59,5 @@ class DefaultFirebaseOptions {
       projectId: 'flutter-social-media-bcef2',
       storageBucket: 'flutter-social-media-bcef2.appspot.com',
       databaseURL:
-          'flutter-social-media-bcef2.asia-southeast1.firebase.io.com');
+          'https://flutter-social-media-bcef2-default-rtdb.asia-southeast1.firebasedatabase.app');
 }

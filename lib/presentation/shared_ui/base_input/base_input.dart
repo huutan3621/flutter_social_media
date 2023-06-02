@@ -45,31 +45,35 @@ class _BaseInputState extends State<BaseInput> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.ctrl,
-      keyboardType: widget.keyboardType,
-      focusNode: widget.focusNode,
-      onFieldSubmitted: (value) => widget.onFieldSubmitted ?? (value),
-      validator: (input) => widget.validator!(input),
-      decoration: InputDecoration(
-          labelText: widget.labelText,
-          // labelStyle: tStyle.display14().w500().copyWith(
-          //     color: (widget.focusNode?.hasFocus == true)
-          //         ? AppColor.colorBlack
-          //         : AppColor.colorPink),
-          floatingLabelStyle: tStyle.display16().w500().copyWith(
-                color: AppColor.colorPink,
-              ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.black),
-          ),
-          enabledBorder: OutlineInputBorder(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: TextFormField(
+        controller: widget.ctrl,
+        keyboardType: widget.keyboardType,
+        focusNode: widget.focusNode,
+        onFieldSubmitted: (value) => widget.onFieldSubmitted ?? (value),
+        validator: (input) => widget.validator!(input),
+        decoration: InputDecoration(
+            labelText: widget.labelText,
+            // labelStyle: tStyle.display16().w500(),
+            // labelStyle: tStyle.display14().w500().copyWith(
+            //     color: (widget.focusNode?.hasFocus == true)
+            //         ? AppColor.colorBlack
+            //         : AppColor.colorPink),
+            floatingLabelStyle: tStyle.display16().w500().copyWith(
+                  color: AppColor.colorPink,
+                ),
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.grey))),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Colors.black),
+            ),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(color: Colors.grey))),
+      ),
     );
   }
 }

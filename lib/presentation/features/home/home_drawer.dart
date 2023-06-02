@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_social_media/presentation/features/home/base_drawer_button.dart';
+import 'package:flutter_social_media/presentation/features/sign_in/sign_in_page.dart';
 import 'package:flutter_social_media/presentation/features/user/data/model/user_model.dart';
 import 'package:flutter_social_media/presentation/shared_ui/btn/base_btn/btn_default.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/colors.dart';
 import 'package:flutter_social_media/presentation/shared_ui/themes/text_style.dart';
 
-import '../auth/auth_bloc.dart';
+// class HomeDrawerProvider extends StatelessWidget {
+//   const HomeDrawerProvider({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider<AuthBloc>(
+//       create: (BuildContext context) => AuthBloc(),
+//       child: const HomeDrawer(),
+//     );
+//   }
+// }
 
 class HomeDrawer extends StatefulWidget {
   final String? drawerUsername;
@@ -29,6 +39,8 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
+    // return BlocBuilder<AuthBloc, AuthState>(
+    //   builder: (context, state) {
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -50,13 +62,21 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        (widget.drawerUsername) ?? "",
-                        style: tStyle
-                            .w500()
-                            .display20()
-                            .copyWith(color: AppColor.colorPink),
-                      ),
+                      // BlocBuilder<AuthBloc, AuthState>(
+                      //   builder: (context, state) {
+                      //     if (state is AuthenticatedState) {
+                      //       return Text(
+                      //         (state.user.email) ?? "",
+                      //         style: tStyle
+                      //             .w500()
+                      //             .display20()
+                      //             .copyWith(color: AppColor.colorPink),
+                      //       );
+                      //     } else {
+                      //       return const Text("");
+                      //     }
+                      //   },
+                      // ),
                       const SizedBox(
                         height: 4,
                       ),
@@ -111,8 +131,17 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     alignment: Alignment.bottomCenter,
                     child: BtnDefault(
                       onTap: () {
-                        context.read<AuthBloc>().add(AuthLogoutEvent());
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => const SignInPage()));
+                        // context
+                        //     .read<AuthBloc>()
+                        //     .add(AuthLogoutEvent(context: context));
                       },
+                      // ignore: prefer_const_constructors
+
+                      // onTap: () async{
+
+                      // },
                       type: BtnDefaultType.secondary,
                       title: "Đăng xuất",
                     )),
@@ -122,5 +151,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         ],
       ),
     );
+    //   },
+    // );
   }
 }

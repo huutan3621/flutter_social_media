@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_social_media/presentation/features/home/home_page.dart';
+import 'package:flutter_social_media/presentation/features/onboarding/pages/onboarding_page.dart';
 import 'package:flutter_social_media/presentation/features/sign_in/sign_in_page.dart';
 import 'package:flutter_social_media/presentation/features/sign_up/sign_up_page.dart';
 
@@ -16,19 +17,19 @@ class MyApp extends StatelessWidget {
               // builder: (_) => const HomePage(
               //       id: "",
               //     ));
-              builder: (_) => const SignInProvider());
+              builder: (_) => const OnBoardingPage());
         }
 
         if (settings.name == SignInPage.nameRoute) {
-          return MaterialPageRoute(builder: (_) => const SignInProvider());
+          return MaterialPageRoute(builder: (_) => const SignInPage());
         }
 
         if (settings.name == HomePage.nameRoute) {
           final String id = settings.arguments as String;
           return MaterialPageRoute<String>(
-            builder: (_) => HomePage(
-              id: id,
-            ),
+            builder: (_) => const HomePage(
+                // id: id,
+                ),
           );
         }
 

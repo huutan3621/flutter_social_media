@@ -21,8 +21,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     switch (_page) {
       case 0:
         return const HomePage(
-          id: '',
-        );
+            // id: '',
+            );
         break;
       case 1:
         return const DiscoverPage();

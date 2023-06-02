@@ -25,8 +25,10 @@ extension AppTextStyle on TextStyle {
   TextStyle display12() => copyWith(fontSize: 12);
   TextStyle display14() => copyWith(fontSize: 14);
   TextStyle display16() => copyWith(fontSize: 16);
+  TextStyle display18() => copyWith(fontSize: 18);
   TextStyle display20() => copyWith(fontSize: 20);
   TextStyle display24() => copyWith(fontSize: 24);
+  TextStyle display30() => copyWith(fontSize: 30);
   TextStyle display32() => copyWith(fontSize: 32);
   TextStyle display48() => copyWith(fontSize: 48);
 

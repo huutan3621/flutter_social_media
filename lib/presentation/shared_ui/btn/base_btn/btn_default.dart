@@ -115,9 +115,12 @@ class BtnDefault extends StatelessWidget {
         decoration: customDecoration ?? buildDecoration(),
         child: customChild ??
             Center(
-              child: Text(
-                title ?? "",
-                style: buildTitleStyle(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Text(
+                  title ?? "",
+                  style: buildTitleStyle(),
+                ),
               ),
             ),
       ),
@@ -146,11 +149,11 @@ class BtnDefault extends StatelessWidget {
   TextStyle buildTitleStyle() {
     switch (type) {
       case BtnDefaultType.secondary:
-        return tStyle.display24().w500().copyWith(
+        return tStyle.display18().w500().copyWith(
               color: AppColor.colorPink,
             );
       default:
-        return tStyle.display24().w500().copyWith(color: AppColor.colorWhite);
+        return tStyle.display18().w500().copyWith(color: AppColor.colorWhite);
     }
   }
 }
